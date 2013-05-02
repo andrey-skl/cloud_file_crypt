@@ -34,6 +34,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//routes
 app.get('/', routes.index);
 app.get('/login', login.login);
 
@@ -43,11 +44,11 @@ app.get('/auth/google/return', passport.authenticate('google', { successRedirect
 app.get('/users', user.list);
 app.post('/list-files', files.list);
 
+//passport init
 passport.serializeUser(function(user, done) { done(null, user); });
-
 passport.deserializeUser(function(user, done) { done(null, user);});
-
 passport.use( user.getGoogleStrategy(GoogleStrategy) );
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

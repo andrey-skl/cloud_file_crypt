@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+    div.navbar.navbar-inverse.navbar-fixed-top
+        div.navbar-inner
+            div.container
+                button.btn.btn-navbar(type="button", data-toggle="collapse", data-target=".nav-collapse")
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                span.brand #{username}
+                div.nav-collapse.collapse
+                    ul.nav
+                        li.active
+                            a(href="javascript:void(0)", id="myfiles") Мои файлы
+                        li
+                            a(href="javascript:void(0)", id="inbox") Входящие
+
+
+    div.container
+        h3 Ваши файлы &nbsp
+            a.btn(href="javascript:void(0)") + Загрузить
+
+        div#filelist
+

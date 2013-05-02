@@ -1,0 +1,15 @@
+
+
+
+table.table.table-striped
+    thead
+        tr
+            th Имя файла
+            th Дата загрузки
+
+    tbody
+
+    - each file in files
+        tr
+            td #{file.name}
+            td #{file.uploaded.toDateString()}

@@ -5,6 +5,7 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , files = require('./routes/files')
   , login = require('./routes/login')
   , http = require('http')
   , path = require('path')
@@ -17,7 +18,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.favicon());
+app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
@@ -37,11 +38,10 @@ app.get('/', routes.index);
 app.get('/login', login.login);
 
 app.get('/auth/google', passport.authenticate('google'));
-app.get('/auth/google/return',
-    passport.authenticate('google', { successRedirect: '/',
-        failureRedirect: '/login' }));
+app.get('/auth/google/return', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
 app.get('/users', user.list);
+app.post('/list-files', files.list);
 
 passport.serializeUser(function(user, done) { done(null, user); });
 

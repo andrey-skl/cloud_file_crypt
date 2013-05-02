@@ -41,7 +41,6 @@ app.get('/login', login.login);
 app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
-app.get('/users', user.list);
 app.post('/list-files', files.list);
 
 //passport init

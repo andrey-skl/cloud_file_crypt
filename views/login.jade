@@ -1,18 +1,13 @@
-doctype 5
-html
-    head
-        title= title
-        script(src='http://code.jquery.com/jquery.js')
-    body
+extends layout
 
 block content
-  h1= 'Для использования системы необходима авторизация'
-  p Сейчас будет выполнен вход через Google
+    div.container
+        h3= 'Для использования системы необходима авторизация'
+        p Сейчас будет выполнен вход через Google
 
-
-script(type='text/javascript')
-    $(function() {
-        setTimeout(function(){
-            window.location = "/auth/google";
-        }, 1000);
-    });
+    script(type='text/javascript')
+        $(function() {
+            setTimeout(function(){
+                window.location = "/auth/google";
+            }, 1000);
+        });

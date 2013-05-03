@@ -2,10 +2,10 @@
 
 $(function() {
 
-    Filelist.init( $("#filelist") );
+    Filelist.init( $("#filelisttable") );
 
     //загружаем список файлов
-    Filelist.loadList( $("#filelist") );
+    Filelist.loadList( $("#filelisttable") );
 
     $('body').on("click", "#uploadfile", function(target){
         Filelist.showUploadFilePopup();

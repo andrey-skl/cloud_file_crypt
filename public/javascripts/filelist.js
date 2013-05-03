@@ -4,17 +4,19 @@ var Filelist = {
 
     init: function($_tableContainer){
         this.$tableContainer = $_tableContainer;
+
+        $_tableContainer.on("click", "a.removefile", Filelist.removeFile);
     },
 
     loadList : function($toElem){
         $.post('/list-files', function(data){
-            $toElem.html(data);
+            $("tbody", $toElem).html(data);
         })
             .fail(function(e) { $toElem.html("Не удалось загрузить список файлов"); console.log(e.responseText, e); })
     },
 
     appendToList : function($toElem, rowhtml){
-        $('table', $toElem).append(rowhtml);
+        $($toElem).append(rowhtml);
     },
 
     showUploadFilePopup : function(target){
@@ -40,5 +42,18 @@ var Filelist = {
 
         })
             .fail(function(e) { console.log(e.responseText, e); })
+    },
+
+    removeFile: function(){
+        var $this = $(this);
+        var url = $this.attr("href");
+
+        $.get(url, function(data){
+            if (data=="ok")
+                $this.closest("tr").remove();
+
+        }).fail(function(e) { console.log(e.responseText, e); })
+
+        return false;
     }
 }

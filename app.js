@@ -49,6 +49,8 @@ app.get('/auth/google/return', passport.authenticate('google', { successRedirect
 
 app.post('/list-files', files.list);
 app.post('/uploadfile', files.uploadfile);
+app.get('/downloadfile', files.downloadfile);
+app.get('/removefile', files.removefile);
 
 //passport init
 passport.serializeUser(function(user, done) { done(null, user); });

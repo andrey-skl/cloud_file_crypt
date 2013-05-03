@@ -23,5 +23,11 @@ block content
             a#uploadfile.btn(href="javascript:void(0)") + Загрузить
 
         div#filelist
-            p Загружаем список файлов...
-
+            table#filelisttable.table.table-striped
+                thead
+                    tr
+                        th Имя файла
+                        th Размер
+                        th Дата загрузки
+                        th Действия
+                tbody

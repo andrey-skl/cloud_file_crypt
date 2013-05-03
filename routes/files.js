@@ -25,6 +25,46 @@ exports.list = function(req, res){
 
 };
 
+//скачивание файла
+exports.downloadfile = function(req, res){
+    var fileid = req.query.fileid;
+
+    Mongifile.find({'fileid':fileid}, function ( err, files, count ){
+        console.log(files[0]);
+
+        var filePath = files[0].fileid;
+
+        fs.readFile(filePath, function (err, data) {
+            if (err) {
+                throw err;
+            }
+            res.setHeader('Content-Disposition', 'attachment; filename='+files[0].name);
+            res.setHeader('Content-Length', data.size);
+
+            res.send(data);
+        });
+
+    });
+}
+
+exports.removefile = function(req, res){
+    var fileid = req.query.fileid;
+    console.log("removing file with id", fileid);
+
+    Mongifile.find({'fileid':fileid}, function ( err, files, count ){
+
+        console.log("removing file", files[0]);
+
+        var filePath = files[0].fileid;
+
+        files[0].remove();
+        fs.unlinkSync(filePath);
+
+        res.end("ok");
+
+    });
+}
+
 exports.uploadfile = function(req, res){
     console.log('uploadfile');
 
@@ -33,6 +73,7 @@ exports.uploadfile = function(req, res){
     var file = req.files.files[0];
     file.uploaded = new Date();
     file.authoremail = req.user.email;
+    file.fileid = file.path;
 
     var mongofile = new Mongifile({
         fileid: file.path,
@@ -48,7 +89,7 @@ exports.uploadfile = function(req, res){
         console.log('read file', data);
         //TODO: шифрование файла
 
-        res.render('fileinlist',  file );
+        res.render('filelist', { files: [file] });
     });
 
 };

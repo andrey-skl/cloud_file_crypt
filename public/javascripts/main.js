@@ -2,6 +2,8 @@
 
 $(function() {
 
+    Filelist.init( $("#filelist") );
+
     //загружаем список файлов
     Filelist.loadList( $("#filelist") );
 

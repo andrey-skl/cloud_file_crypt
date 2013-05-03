@@ -5,23 +5,24 @@ var Mongifile = require('./../db/model.js').File(db.opendb());
 
 
 exports.list = function(req, res){
-    console.log('filelist');
-
     Mongifile.find( function ( err, files, count ){
-        console.log(err, files, count)
+        //console.log(err, files, count)
+
+        //проверка и удаление из базы записей о отсутствующих файлах
+        for (var i in files){
+            fs.exists(files[i].fileid, function(exists) {
+                console.log("removing not existed file ", files[i])
+                if (!exists) files[i].remove(function ( err, todo ){
+                    if (err) console.log("error removeing file", err);
+                });
+            });
+        }
 
         //for (var i in files) files[i].remove();
 
         res.render('filelist', { files: files });
     });
 
-    var files = [
-        {name:'asdf', uploaded:new Date(), size:123},
-        {name:'asdjfl;ka sd', uploaded:new Date(), size:1233},
-        {name:'askdjf alskjdf', uploaded:new Date(), size:1243}
-    ]
-
-    //res.render('filelist', { files: files });
 };
 
 exports.uploadfile = function(req, res){
@@ -47,7 +48,7 @@ exports.uploadfile = function(req, res){
         console.log('read file', data);
         //TODO: шифрование файла
 
-        res.render('filelist', { files: [file] });
+        res.render('fileinlist',  file );
     });
 
 };

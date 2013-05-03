@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="52898901-6279-4aa7-ad58-44151983118f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="52898901-6279-4aa7-ad58-44151983118f" name="Default" comment="" />
     <ignored path="cloud_file_crypt.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367598359916" ignored="false" />
@@ -19,6 +17,7 @@
     <file path="/layout.jade" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367572427337" ignored="false" />
     <file path="/fragment.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367575626414" ignored="false" />
     <file path="/filelist.jade" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367574691638" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367598397801" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +121,7 @@
       <file leaf-file-name="files.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/files.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="23" selection-start="355" selection-end="355" vertical-scroll-proportion="0.38194445">
+            <state line="26" column="40" selection-start="689" selection-end="689" vertical-scroll-proportion="0.7986111">
               <folding />
             </state>
           </provider>
@@ -641,7 +640,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/files.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="23" selection-start="355" selection-end="355" vertical-scroll-proportion="0.38194445">
+        <state line="26" column="40" selection-start="689" selection-end="689" vertical-scroll-proportion="0.7986111">
           <folding />
         </state>
       </provider>

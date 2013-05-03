@@ -11,6 +11,10 @@ var express = require('express')
   , path = require('path')
   ,  passport = require('passport')
     , GoogleStrategy = require('passport-google').Strategy
+    , mongoose = require('mongoose');
+
+//db = mongoose.connect('mongodb://127.0.0.1:27017');
+//Mongifile = require('./db/model.js').File(db);
 
 var app = express();
 
@@ -21,8 +25,10 @@ app.set('view engine', 'jade');
 app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
 app.use(express.cookieParser());
-app.use(express.bodyParser());
+app.use(express.bodyParser({uploadDir:'./upload'}));
 app.use(express.session({ secret: 'keyboard cat' }));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.methodOverride());
@@ -42,6 +48,7 @@ app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
 app.post('/list-files', files.list);
+app.post('/uploadfile', files.uploadfile);
 
 //passport init
 passport.serializeUser(function(user, done) { done(null, user); });

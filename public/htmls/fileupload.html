@@ -1,0 +1,24 @@
+
+<div id="modalfileupload" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Загрузка файла</h3>
+    </div>
+    <div class="modal-body">
+        <p>Введите секретное слово и выберите файл для загрузки</p>
+
+
+        <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+
+            <input type="text" name="secret" placeholder="введите секретное слово">
+            <p>
+                <input type="file" name="files[]">
+            </p>
+
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
+    </div>
+</div>

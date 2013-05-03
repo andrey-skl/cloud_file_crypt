@@ -5,13 +5,15 @@ table.table.table-striped
     thead
         tr
             th Имя файла
+            th Размер
             th Дата загрузки
-
+            th Действия
     tbody
 
     - each file in files
         tr
             td #{file.name}
+            td #{file.size}
             td #{file.uploaded.toDateString()}
             td
                 div.btn-group

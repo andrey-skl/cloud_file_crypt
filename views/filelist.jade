@@ -5,6 +5,7 @@
         td #{file.name}
         td #{file.size}
         td #{file.uploaded.toDateString()}
+        td #{file.responderemail}
         td
             div.btn-group
                 button.btn.dropdown-toggle(data-toggle="dropdown") Действия
@@ -13,11 +14,9 @@
                     li
                         a.downloadfile(href="downloadfile?fileid="+file.fileid) Скачать
                     li
-                        a(href="javascript:void(0)") Зашифровать
+                        a.signfile(href="javascript:void(0)") Подписать
                     li
-                        a(href="javascript:void(0)") Подписать
-                    li
-                        a(href="javascript:void(0)") Отправить
+                        a.sendfile(href="/sendfile") Отправить
                     li
                         a.removefile(href="removefile?fileid="+file.fileid) Удалить
 

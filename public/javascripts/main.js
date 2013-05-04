@@ -11,4 +11,9 @@ $(function() {
         Filelist.showUploadFilePopup();
     });
 
+    //удаление модальных окон после их скрытия
+    $('body').on("click", "*[data-dismiss]", function(){
+        setTimeout(function(){ $('.modal').remove(); }, 500);
+    });
+
 });

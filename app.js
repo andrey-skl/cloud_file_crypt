@@ -14,7 +14,7 @@ var express = require('express')
     , mongoose = require('mongoose');
 
 //db = mongoose.connect('mongodb://127.0.0.1:27017');
-//Mongifile = require('./db/model.js').File(db);
+//Mongofile = require('./db/model.js').File(db);
 
 var app = express();
 
@@ -51,6 +51,8 @@ app.post('/list-files', files.list);
 app.post('/uploadfile', files.uploadfile);
 app.get('/downloadfile', files.downloadfile);
 app.get('/removefile', files.removefile);
+app.get('/issecretok', files.issecretok);
+app.post("/sendfile", files.sendfile)
 
 //passport init
 passport.serializeUser(function(user, done) { done(null, user); });

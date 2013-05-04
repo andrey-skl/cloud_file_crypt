@@ -6,6 +6,8 @@ var Filelist = {
         this.$tableContainer = $_tableContainer;
 
         $_tableContainer.on("click", "a.removefile", Filelist.removeFile);
+        $_tableContainer.on("click", "a.downloadfile", Filelist.downloadFile);
+        $_tableContainer.on("click", "a.sendfile", Filelist.sendFile);
     },
 
     loadList : function($toElem){
@@ -22,6 +24,10 @@ var Filelist = {
     showUploadFilePopup : function(target){
         $.get('/htmls/fileupload.html', function(data){
             $('body').append(data);
+
+            if (prettyFileInputs) prettyFileInputs();
+            $("#secret").val( Math.random().toString(36).substr(2, 5) ).focus();
+
             $('#modalfileupload').modal({show:true});
 
             $('#fileupload').fileupload({
@@ -53,6 +59,87 @@ var Filelist = {
                 $this.closest("tr").remove();
 
         }).fail(function(e) { console.log(e.responseText, e); })
+
+        return false;
+    },
+
+    downloadFile: function(){
+        var $this = $(this);
+        var url = $this.attr("href");
+        var fileid = $this.parents("tr").data("fileid");
+
+        $.get('/htmls/filedownload.html', function(data){
+            $('body').append(data);
+            $('#modalfiledownload').modal({show:true});
+            $("#secret").focus();
+
+
+            $('#modalfiledownload').on("click", "#ok", function(e){
+                var secret = $("#secret").val();
+
+
+                $.get("/issecretok?secret="+secret+"&fileid="+fileid, function(data){
+                    if (data=="ok")
+                    {
+                        url = url+"&secret="+secret;
+                        window.location = url;
+
+                        //скрываем модальное окно
+                        $('#modalfiledownload').modal('hide')
+                        setTimeout(function(){
+                            $('#modalfiledownload').remove();
+                        }, 1000);
+                    } else {
+                        console.log("wrong secret", secret);
+                        alert("Неверное секретное слово")
+                    }
+
+                }).fail(function(e) { console.log(e.responseText, e); })
+            });
+
+        })
+            .fail(function(e) { console.log(e.responseText, e); })
+
+        return false;
+    },
+
+    sendFile : function(target){
+        var $this = $(this);
+        var fileid = $this.parents("tr").data("fileid");
+
+        $.get('/htmls/sendfile.html', function(data){
+            $('body').append(data);
+            var $modal = $('#modalfilesend');
+
+            $("#email").focus();
+
+            $modal.modal({show:true});
+
+
+            $modal.on("click", "#ok", function(e){
+                var email = $("#email").val();
+                $.post("/sendfile", {
+                        email: email,
+                        fileid:fileid
+                    },
+                    function(data){
+                        if (data)
+                        {
+                            $this.parents("tr").replaceWith(data);
+                            //скрываем модальное окно
+                            $modal.modal('hide')
+                            setTimeout(function(){
+                                $modal.remove();
+                            }, 1000);
+                        } else {
+                            console.log("send file error");
+                        }
+
+                    }).fail(function(e) { console.log(e.responseText, e); })
+            });
+
+        })
+            .fail(function(e) { console.log(e.responseText, e); });
 
         return false;
     }

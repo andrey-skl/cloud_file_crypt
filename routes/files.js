@@ -179,3 +179,11 @@ function decryptByAES256(data, secret){
 
     return new Buffer(decryptedData, 'binary');;
 }
+
+function createSign(data){
+    var signer = crypto.createSign('RSA-SHA256');
+    var sign = signer.update(data);
+    console.log("sign", sign);
+    sign = signer.sign(/*TODO:where to take private key?*/private_key, 'binary')
+    console.log("sign", sign);
+}

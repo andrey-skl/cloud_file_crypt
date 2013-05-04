@@ -5,16 +5,28 @@ var Filelist = {
     init: function($_tableContainer){
         this.$tableContainer = $_tableContainer;
 
+        $("#uploadfile").on("click", Filelist.showUploadFilePopup );
         $_tableContainer.on("click", "a.removefile", Filelist.removeFile);
         $_tableContainer.on("click", "a.downloadfile", Filelist.downloadFile);
         $_tableContainer.on("click", "a.sendfile", Filelist.sendFile);
     },
 
-    loadList : function($toElem){
+    loadList : function(){
         $.post('/list-files', function(data){
-            $("tbody", $toElem).html(data);
+            $("tbody", Filelist.$tableContainer).html(data);
+            $("a#myfiles").parent().addClass("active");
+            $("a#inbox").parent().removeClass("active");
         })
-            .fail(function(e) { $toElem.html("Не удалось загрузить список файлов"); console.log(e.responseText, e); })
+            .fail(function(e) { Filelist.$tableContainer.html("Не удалось загрузить список файлов"); console.log(e.responseText, e); })
+    },
+
+    loadIncomingList : function(){
+        $.post('/list-incoming-files', function(data){
+            $("tbody", Filelist.$tableContainer).html(data);
+            $("a#myfiles").parent().removeClass("active");
+            $("a#inbox").parent().addClass("active");
+        })
+            .fail(function(e) { Filelist.$tableContainer.html("Не удалось загрузить список файлов"); console.log(e.responseText, e); })
     },
 
     appendToList : function($toElem, rowhtml){
@@ -106,12 +118,13 @@ var Filelist = {
     sendFile : function(target){
         var $this = $(this);
         var fileid = $this.parents("tr").data("fileid");
+        var olreadysendedemail = $this.parents("tr").find("a.mailto").text();
 
         $.get('/htmls/sendfile.html', function(data){
             $('body').append(data);
             var $modal = $('#modalfilesend');
 
-            $("#email").focus();
+            $("#email").focus().val(olreadysendedemail);
 
             $modal.modal({show:true});
 

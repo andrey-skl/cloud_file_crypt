@@ -6,23 +6,25 @@ var crypto = require('crypto');
 
 
 exports.list = function(req, res){
+    if (!req.isAuthenticated()) return res.redirect('/login');
 
-    Mongofile.find( function ( err, files, count ){
-        //console.log(err, files, count)
+    var email = req.user.email;
 
-        //проверка и удаление из базы записей о отсутствующих файлах
-        /*for (var i in files){
-            fs.exists(files[i].fileid, function(exists) {
-                console.log("removing not existed file ", files[i])
-                if (!exists) files[i].remove(function ( err, todo ){
-                    if (err) console.log("error removeing file", err);
-                });
-            });
-        }*/
-
+    Mongofile.find({'authoremail':{ $regex : new RegExp(email, "i") }}, function ( err, files, count ){
         //for (var i in files) files[i].remove();
 
         res.render('filelist', { files: files });
+    });
+
+};
+
+exports.incominglist = function(req, res){
+    if (!req.isAuthenticated()) return res.redirect('/login');
+
+    var email = req.user.email;
+
+    Mongofile.find({'responderemail':{ $regex : new RegExp(email, "i") }}, function ( err, files, count ){
+        res.render('fileincominglist', { files: files });
     });
 
 };

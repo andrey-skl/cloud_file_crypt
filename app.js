@@ -48,6 +48,7 @@ app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
 app.post('/list-files', files.list);
+app.post('/list-incoming-files', files.incominglist);
 app.post('/uploadfile', files.uploadfile);
 app.get('/downloadfile', files.downloadfile);
 app.get('/removefile', files.removefile);

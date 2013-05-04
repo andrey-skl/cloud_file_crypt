@@ -11,6 +11,8 @@ block content
                     span.icon-bar
                 span.brand #{username}
                 div.nav-collapse.collapse
+                    p.navbar-text.pull-right #{useremail}
+
                     ul.nav
                         li.active
                             a(href="javascript:void(0)", id="myfiles") Мои файлы
@@ -29,6 +31,6 @@ block content
                         th Имя файла
                         th Размер
                         th Дата загрузки
-                        th Получатель
+                        th Пользователь
                         th Действия
                 tbody

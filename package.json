@@ -1,7 +1,7 @@
 {
   "name": "cloud_file_crypt",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node app.js"
   },
@@ -10,7 +10,7 @@
     "jade": "*",
     "passport": "*",
     "passport-google": "*",
-    "mongoose" : "3.2.0",
+    "mongoose" : "*",
     "connect"  : "1.8.7",
     "mongodb" : "1.1.11"
   }

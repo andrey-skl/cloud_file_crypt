@@ -11,6 +11,7 @@
     "passport": "*",
     "passport-google": "*",
     "mongoose" : "3.2.0",
-    "connect"  : "1.8.7"
+    "connect"  : "1.8.7",
+    "mongodb" : "1.1.11"
   }
 }

@@ -11,10 +11,6 @@ var express = require('express')
   , path = require('path')
   ,  passport = require('passport')
     , GoogleStrategy = require('passport-google').Strategy
-    , mongoose = require('mongoose');
-
-//db = mongoose.connect('mongodb://127.0.0.1:27017');
-//Mongofile = require('./db/model.js').File(db);
 
 var app = express();
 

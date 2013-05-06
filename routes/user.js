@@ -11,8 +11,8 @@ exports.parseUser = function(openIdUser){
 //google enter strategy for passport module
 exports.getGoogleStrategy = function(GoogleStrategy){
     return new GoogleStrategy({
-            returnURL: 'http://localhost:3000/auth/google/return',
-            realm: 'http://localhost:3000/'
+            returnURL: 'auth/google/return',
+            realm: '/'
         },
         function(identifier, profile, done) {
 

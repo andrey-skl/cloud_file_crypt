@@ -11,10 +11,10 @@ exports.parseUser = function(openIdUser){
 //google enter strategy for passport module
 exports.getGoogleStrategy = function(GoogleStrategy){
     return new GoogleStrategy({
-            returnURL: 'http://localhost:8080/auth/google/return',
-            realm: 'http://localhost:8080/'
-            //returnURL: 'http://securespace.herokuapp.com/auth/google/return',
-            //realm: 'http://securespace.herokuapp.com/'
+            //returnURL: 'http://localhost:8080/auth/google/return',
+            //realm: 'http://localhost:8080/'
+            returnURL: 'http://securespace.herokuapp.com/auth/google/return',
+            realm: 'http://securespace.herokuapp.com/'
         },
         function(identifier, profile, done) {
 

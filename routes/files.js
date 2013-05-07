@@ -4,6 +4,15 @@ var db = require('./../db/db.js')
 var Mongofile = require('./../db/model.js').File(db.opendb());
 var crypto = require('crypto');
 
+var S3_KEY = 'AKIAJ4IHXJF2GADJAWSQ';
+var S3_SECRET = '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';
+var S3_BUCKET = 'securespace';
+var knox = require('knox').createClient({
+    key: S3_KEY,
+    secret: S3_SECRET,
+    bucket: S3_BUCKET
+})
+
 
 exports.list = function(req, res){
     if (!req.isAuthenticated()) return res.redirect('/login');
@@ -47,6 +56,10 @@ exports.downloadfile = function(req, res){
             }
 
             try{
+                knox.getFile(filePath, function(err,res) {
+                    console.log("knox error ", err, res);
+                });
+
                 var decrypted = decryptByAES256(data , secret);
                 console.log('decrypt file', decrypted);
                 res.setHeader('Content-Disposition', 'attachment; filename='+files[0].name);
@@ -100,8 +113,14 @@ exports.removefile = function(req, res){
 
         var filePath = files[0].fileid;
 
+        knox.deleteFile(filePath, function(err, res){
+            console.log(res.statusCode);
+        });
+
         files[0].remove();
-        fs.unlinkSync(filePath);
+        try{
+            fs.unlinkSync(filePath);
+        } catch (e) {}
 
         res.end("ok");
 
@@ -133,7 +152,12 @@ exports.uploadfile = function(req, res){
 
         var crypted = cryptByAES256(data, secret);
 
-        fs.writeFileSync(file.path, crypted)
+        knox.putBuffer(crypted, file.path, '', function(err, res){
+            console.log("knox error ", err, res.statusCode);
+        });
+
+        fs.writeFileSync(file.path, crypted);
+
 
         console.log('file crypted', crypted);
 

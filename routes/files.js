@@ -57,7 +57,7 @@ exports.downloadfile = function(req, res){
                 data += chunk;
             });
 
-            res.on('end', function(){
+            res.on('finish', function(){
                 var decrypted = decryptByAES256(data , secret);
                 console.log('decrypt file', decrypted);
                 res.setHeader('Content-Disposition', 'attachment; filename='+files[0].name);
@@ -106,7 +106,7 @@ exports.issecretok = function(req,res){
                 data += chunk;
             });
 
-            res.on('end', function(){
+            res.on('finish', function(){
                 try{
                     var decrypted = decryptByAES256(data , secret);
                     console.log('decrypt file', decrypted);

@@ -10,7 +10,9 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   ,  passport = require('passport')
+    , db = require('./db/db.js')
     , GoogleStrategy = require('passport-google').Strategy
+    , SessionStore = require("session-mongoose")(express);
 
 var app = express();
 
@@ -23,8 +25,18 @@ app.use(express.logger('dev'));
 app.use(express.cookieParser());
 //app.use(express.bodyParser({uploadDir:'./upload'}));
 app.use(express.bodyParser());
-app.use(express.session({ secret: 'keyboard cat' }));
 
+//app.use(express.session({ secret: 'keyboard cat' }));
+var store = new SessionStore({
+    url: db.getMongoUrl(),
+    interval: 120000
+})
+// configure session provider
+app.use(express.session({
+    secret: 'the secret world for session',
+    store: store,
+    cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());

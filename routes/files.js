@@ -52,8 +52,13 @@ exports.downloadfile = function(req, res){
 
         knox.getFile(filePath, function(err,resp) {
             console.log("knox error ", err, resp.statusCode);
+            var data = "";
             resp.on('data', function(chunk){
-                var decrypted = decryptByAES256(chunk , secret);
+                data += chunk;
+            });
+
+            res.on('end', function(){
+                var decrypted = decryptByAES256(data , secret);
                 console.log('decrypt file', decrypted);
                 res.setHeader('Content-Disposition', 'attachment; filename='+files[0].name);
                 res.setHeader('Content-Length', decrypted.size);
@@ -95,9 +100,15 @@ exports.issecretok = function(req,res){
 
         knox.getFile(filePath, function(err,resp) {
             console.log("knox error ", err, resp.statusCode);
+
+            var data = "";
             resp.on('data', function(chunk){
+                data += chunk;
+            });
+
+            res.on('end', function(){
                 try{
-                    var decrypted = decryptByAES256(chunk , secret);
+                    var decrypted = decryptByAES256(data , secret);
                     console.log('decrypt file', decrypted);
                     res.send("ok");
                 } catch(e) {

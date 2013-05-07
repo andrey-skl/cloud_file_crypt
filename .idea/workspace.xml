@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52898901-6279-4aa7-ad58-44151983118f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/db.js" afterPath="$PROJECT_DIR$/db/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/files.js" afterPath="$PROJECT_DIR$/routes/files.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cloud_file_crypt.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367913373217" ignored="false" />
+    <file path="/Dummy.txt" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367918916171" ignored="false" />
     <file path="/app.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367918712491" ignored="false" />
     <file path="/db.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367918879090" ignored="false" />
     <file path="/settings.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367568619937" ignored="false" />
@@ -18,7 +16,7 @@
     <file path="/main.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367657085257" ignored="false" />
     <file path="/index.jade" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367658283434" ignored="false" />
     <file path="/fileupload.html" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367653956253" ignored="false" />
-    <file path="/files.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367910654822" ignored="false" />
+    <file path="/files.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367921076124" ignored="false" />
     <file path="/layout.jade" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367572427337" ignored="false" />
     <file path="/fragment.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367906437794" ignored="false" />
     <file path="/filelist.jade" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367658084313" ignored="false" />
@@ -65,7 +63,7 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="55" selection-start="885" selection-end="885" vertical-scroll-proportion="0.0">
+            <state line="32" column="2" selection-start="967" selection-end="967" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -80,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="db.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/db.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="0.1736111">
+            <state line="5" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -125,10 +123,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="files.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="files.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/files.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="25" selection-end="58" vertical-scroll-proportion="0.0">
+            <state line="61" column="15" selection-start="1892" selection-end="1892" vertical-scroll-proportion="0.5902778">
               <folding />
             </state>
           </provider>
@@ -169,10 +167,10 @@
         <option value="$PROJECT_DIR$/views/index.jade" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/routes/user.js" />
-        <option value="$PROJECT_DIR$/routes/files.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/db/db.js" />
+        <option value="$PROJECT_DIR$/routes/files.js" />
       </list>
     </option>
   </component>
@@ -523,13 +521,18 @@
       <created>1367863850039</created>
       <updated>1367863850039</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Сделал сохранение сессий в mongo">
+      <created>1367918926859</created>
+      <updated>1367918926859</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="22" width="1331" height="800" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.33431518" order="1" side_tool="true" content_ui="tabs" />
@@ -543,7 +546,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -592,7 +594,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="деплой" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделал сохранение сессий в mongo" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -618,6 +620,7 @@
     <MESSAGE value="зависимости" />
     <MESSAGE value="монго дб в зависимостях" />
     <MESSAGE value="деплой" />
+    <MESSAGE value="Сделал сохранение сессий в mongo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -683,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/files.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="25" selection-end="58" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/node_modules/connect-mongo/lib/connect-mongo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="29" selection-start="519" selection-end="519" vertical-scroll-proportion="0.33333334">
@@ -704,13 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="55" selection-start="885" selection-end="885" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="18" selection-start="409" selection-end="423" vertical-scroll-proportion="0.0">
@@ -720,7 +709,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="0.1736111">
+        <state line="5" column="0" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="2" selection-start="967" selection-end="967" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/files.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="15" selection-start="1892" selection-end="1892" vertical-scroll-proportion="0.5902778">
           <folding />
         </state>
       </provider>

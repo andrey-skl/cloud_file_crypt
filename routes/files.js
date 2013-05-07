@@ -50,14 +50,15 @@ exports.downloadfile = function(req, res){
 
         var filePath = files[0].fileid;
 
-        knox.getFile(filePath, function(err,resp) {
+        knox.get(filePath).on('response', function(res){
             console.log("knox error ", err, resp.statusCode);
+
             var data = "";
             resp.on('data', function(chunk){
                 data += chunk;
             });
 
-            res.on('finish', function(){
+            res.on('end', function(){
                 var decrypted = decryptByAES256(data , secret);
                 console.log('decrypt file', decrypted);
                 res.setHeader('Content-Disposition', 'attachment; filename='+files[0].name);
@@ -65,7 +66,7 @@ exports.downloadfile = function(req, res){
 
                 res.send(decrypted);
             });
-        });
+        }).end();
 /*
         fs.readFile(filePath, function (err, data) {
             if (err) {
@@ -98,7 +99,7 @@ exports.issecretok = function(req,res){
 
         var filePath = files[0].fileid;
 
-        knox.getFile(filePath, function(err,resp) {
+        knox.get(filePath).on('response', function(res){
             console.log("knox error ", err, resp.statusCode);
 
             var data = "";
@@ -106,7 +107,7 @@ exports.issecretok = function(req,res){
                 data += chunk;
             });
 
-            res.on('finish', function(){
+            res.on('end', function(){
                 try{
                     var decrypted = decryptByAES256(data , secret);
                     console.log('decrypt file', decrypted);
@@ -116,7 +117,8 @@ exports.issecretok = function(req,res){
                     res.send("notok");
                 }
             });
-        });
+        }).end();
+
         /*
         fs.readFile(filePath, function (err, data) {
             if (err) {

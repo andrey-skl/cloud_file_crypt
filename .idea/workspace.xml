@@ -7,7 +7,7 @@
     </list>
     <ignored path="cloud_file_crypt.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367923909120" ignored="false" />
+    <file path="/Dummy.txt" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367924774890" ignored="false" />
     <file path="/app.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367918712491" ignored="false" />
     <file path="/db.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367918879090" ignored="false" />
     <file path="/settings.js" changelist="52898901-6279-4aa7-ad58-44151983118f" time="1367568619937" ignored="false" />
@@ -126,7 +126,7 @@
       <file leaf-file-name="files.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/files.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="26" selection-start="1661" selection-end="1661" vertical-scroll-proportion="0.41666666">
+            <state line="50" column="39" selection-start="1399" selection-end="1399" vertical-scroll-proportion="0.2013889">
               <folding />
             </state>
           </provider>
@@ -537,7 +537,11 @@
       <created>1367923916558</created>
       <updated>1367923916558</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="end -&gt; finish event">
+      <created>1367924779016</created>
+      <updated>1367924779016</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -606,7 +610,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Склеивание файла при скачивании" />
+    <option name="LAST_COMMIT_MESSAGE" value="end -&gt; finish event" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -636,6 +640,7 @@
     <MESSAGE value="интегрировано с knox amazon s3" />
     <MESSAGE value="деплой на heroku" />
     <MESSAGE value="Склеивание файла при скачивании" />
+    <MESSAGE value="end -&gt; finish event" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -736,7 +741,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/files.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="26" selection-start="1661" selection-end="1661" vertical-scroll-proportion="0.41666666">
+        <state line="50" column="39" selection-start="1399" selection-end="1399" vertical-scroll-proportion="0.2013889">
           <folding />
         </state>
       </provider>

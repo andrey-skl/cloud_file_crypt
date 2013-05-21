@@ -35,7 +35,7 @@ var store = new SessionStore({
 app.use(express.session({
     secret: 'the secret world for session',
     store: store,
-    cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
+    cookie: { maxAge: 90000000 }
 }));
 
 app.use(passport.initialize());

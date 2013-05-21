@@ -44,6 +44,9 @@ var Filelist = {
 
             $('#fileupload').fileupload({
                 url: 'uploadfile',
+                start: function(e, data){
+                    $(".progress").show();
+                },
                 done:function(e, data){
                     console.log(data.result);
 
@@ -55,6 +58,11 @@ var Filelist = {
                         $('#modalfileupload').remove();
                     }, 1000);
 
+                },
+                progress: function(e, data){
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $("#loading").text("Загрузка файла... "+progress+"%");
+                    $("#loading-bar").css("width", progress+"%");
                 }
             });
 

@@ -1,14 +1,5 @@
 var mongoose = require('mongoose');
 
-/*
-mongoose.model('File', {
-    properties: ['name', 'fileid', 'uploaded', 'size', 'authoremail', 'responderemail'],
-
-    indexes: [
-        'fileid', 'name', 'authoremail', 'responderemail'
-    ]
-});*/
-
 var Schema   = mongoose.Schema;
 
 var fileschema = new Schema({

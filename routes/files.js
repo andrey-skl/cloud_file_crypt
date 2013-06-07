@@ -20,8 +20,6 @@ exports.list = function(req, res){
     var email = req.user.email;
 
     Mongofile.find({'authoremail':{ $regex : new RegExp(email, "i") }}, function ( err, files, count ){
-        //for (var i in files) files[i].remove();
-
         res.render('filelist', { files: files });
     });
 
@@ -38,7 +36,7 @@ exports.incominglist = function(req, res){
 
 };
 
-//скачивание файла
+//file downloading
 exports.downloadfile = function(req, res){
     if (!req.isAuthenticated()) return res.redirect('/login');
 
@@ -50,6 +48,7 @@ exports.downloadfile = function(req, res){
 
         var filePath = files[0].fileid;
 
+        //chunked file download from storage
         knox.get(filePath).on('response', function(resp){
             console.log("knox error ", err, resp.statusCode);
 
@@ -70,29 +69,11 @@ exports.downloadfile = function(req, res){
                 res.send(decrypted);
             });
         }).end();
-/*
-        fs.readFile(filePath, function (err, data) {
-            if (err) {
-                throw err;
-            }
-
-            try{
-                var decrypted = decryptByAES256(data , secret);
-                console.log('decrypt file', decrypted);
-                res.setHeader('Content-Disposition', 'attachment; filename='+files[0].name);
-                res.setHeader('Content-Length', decrypted.size);
-
-                res.send(decrypted);
-            } catch(e) {
-                console.log('cant decrypt file with key', filePath, secret);
-                res.redirect('/');
-            }
-
-        });*/
 
     });
 }
 
+//checking secret key validity
 exports.issecretok = function(req,res){
     if (!req.isAuthenticated()) return res.redirect('/login');
 
@@ -102,6 +83,7 @@ exports.issecretok = function(req,res){
 
         var filePath = files[0].fileid;
 
+        //chunked file downloading from S3 storage
         knox.get(filePath).on('response', function(resp){
             console.log("knox error ", err, resp.statusCode);
 
@@ -126,25 +108,10 @@ exports.issecretok = function(req,res){
             });
         }).end();
 
-        /*
-        fs.readFile(filePath, function (err, data) {
-            if (err) {
-                throw err;
-            }
-            try{
-                var decrypted = decryptByAES256(data , secret);
-                console.log('decrypt file', decrypted);
-                res.send("ok");
-            } catch(e) {
-                console.log('cant decrypt file with key', filePath, secret);
-                res.send("notok");
-            }
-
-        });*/
-
     });
 }
 
+//removing file from database and storage
 exports.removefile = function(req, res){
     var fileid = req.query.fileid;
     console.log("removing file with id", fileid);
@@ -160,9 +127,12 @@ exports.removefile = function(req, res){
         });
 
         files[0].remove();
+        //try to remove physical file
         try{
             fs.unlinkSync(filePath);
-        } catch (e) {}
+        } catch (e) {
+            console.log("cant remove filed", e);
+        }
 
         res.end("ok");
 
@@ -179,6 +149,7 @@ exports.uploadfile = function(req, res){
     file.authoremail = req.user.email;
     file.fileid = file.path;
 
+    //creating new mongodb document for the file and save them
     var mongofile = new Mongofile({
         fileid: file.path,
         name : file.name,
@@ -189,6 +160,7 @@ exports.uploadfile = function(req, res){
             console.log("saved mongofile:", _mongofile);
         });
 
+    //reading file, crypting and send to S3 storage
     fs.readFile(file.path, function (err, data) {
         console.log('read file', data.length, data);
 
@@ -213,6 +185,7 @@ exports.uploadfile = function(req, res){
 
 };
 
+//sending file to responder email
 exports.sendfile = function(req, res){
     var fileid = req.body.fileid;
     var email = req.body.email;
@@ -228,6 +201,7 @@ exports.sendfile = function(req, res){
 
     });
 }
+
 
 function cryptByAES256(data, secret){
 

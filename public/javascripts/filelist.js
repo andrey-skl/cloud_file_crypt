@@ -5,12 +5,14 @@ var Filelist = {
     init: function($_tableContainer){
         this.$tableContainer = $_tableContainer;
 
+        //events subscribing
         $("#uploadfile").on("click", Filelist.showUploadFilePopup );
         $_tableContainer.on("click", "a.removefile", Filelist.removeFile);
         $_tableContainer.on("click", "a.downloadfile", Filelist.downloadFile);
         $_tableContainer.on("click", "a.sendfile", Filelist.sendFile);
     },
 
+    //load list of user files and render it
     loadList : function(){
         $.post('/list-files', function(data){
             $("tbody", Filelist.$tableContainer).html(data);
@@ -20,6 +22,7 @@ var Filelist = {
             .fail(function(e) { Filelist.$tableContainer.html("Не удалось загрузить список файлов"); console.log(e.responseText, e); })
     },
 
+    //load list of incoming files and render it
     loadIncomingList : function(){
         $.post('/list-incoming-files', function(data){
             $("tbody", Filelist.$tableContainer).html(data);
@@ -29,19 +32,24 @@ var Filelist = {
             .fail(function(e) { Filelist.$tableContainer.html("Не удалось загрузить список файлов"); console.log(e.responseText, e); })
     },
 
+    //adding html element to list
     appendToList : function($toElem, rowhtml){
         $($toElem).append(rowhtml);
     },
 
+    //load and show upload file popup
     showUploadFilePopup : function(target){
         $.get('/htmls/fileupload.html', function(data){
             $('body').append(data);
 
+            //styling file input
             if (prettyFileInputs) prettyFileInputs();
+            //generating random secret word
             $("#secret").val( Math.random().toString(36).substr(2, 5) ).focus();
 
             $('#modalfileupload').modal({show:true});
 
+            //initialize fileupload plugin
             $('#fileupload').fileupload({
                 url: 'uploadfile',
                 start: function(e, data){
@@ -52,7 +60,7 @@ var Filelist = {
 
                     Filelist.appendToList(Filelist.$tableContainer, data.result);
 
-                    //скрываем модальное окно
+                    //hide modal window
                     $('#modalfileupload').modal('hide')
                     setTimeout(function(){
                         $('#modalfileupload').remove();
@@ -70,6 +78,7 @@ var Filelist = {
             .fail(function(e) { console.log(e.responseText, e); })
     },
 
+    //action for "remove file" link
     removeFile: function(){
         var $this = $(this);
         var url = $this.attr("href");
@@ -83,6 +92,7 @@ var Filelist = {
         return false;
     },
 
+    //action for download file link
     downloadFile: function(){
         var $this = $(this);
         var url = $this.attr("href");
@@ -123,6 +133,7 @@ var Filelist = {
         return false;
     },
 
+    //action for "send file" link
     sendFile : function(target){
         var $this = $(this);
         var fileid = $this.parents("tr").data("fileid");
